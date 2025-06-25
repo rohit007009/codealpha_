@@ -1,123 +1,84 @@
-const calculator = {
-    currentInput: '0',
-    previousInput: '',
-    operation: undefined,
-    resetScreen: false
+// Mobile Navigation
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const navLinkItems = document.querySelectorAll('.nav-link');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+});
+
+navLinkItems.forEach(item => {
+    item.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
+});
+
+// Header Scroll Effect
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Animate Elements on Scroll
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.skill-card, .project-card, .contact-item');
+    
+    elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+            element.style.animation = 'fadeInUp 1s ease forwards';
+        }
+    });
 };
 
-const currentInputElement = document.querySelector('.current-input');
-const previousOperationElement = document.querySelector('.previous-operation');
+window.addEventListener('scroll', animateOnScroll);
+animateOnScroll(); // Run once on page load
 
-function updateDisplay() {
-    currentInputElement.value = calculator.currentInput;
-    if (calculator.operation != null) {
-        previousOperationElement.textContent = 
-            `${calculator.previousInput} ${calculator.operation}`;
-    } else {
-        previousOperationElement.textContent = '';
-    }
-}
+// Skill Bar Animation
+const skillBars = document.querySelectorAll('.skill-progress');
 
-function appendNumber(number) {
-    if (calculator.currentInput === '0' || calculator.resetScreen) {
-        calculator.currentInput = '';
-        calculator.resetScreen = false;
-    }
-    calculator.currentInput += number;
-}
-
-function chooseOperation(operation) {
-    if (calculator.currentInput === '') return;
-    if (calculator.previousInput !== '') {
-        compute();
-    }
-    calculator.operation = operation;
-    calculator.previousInput = calculator.currentInput;
-    calculator.resetScreen = true;
-}
-
-function compute() {
-    let computation;
-    const prev = parseFloat(calculator.previousInput);
-    const current = parseFloat(calculator.currentInput);
-    if (isNaN(prev) || isNaN(current)) return;
-    
-    switch (calculator.operation) {
-        case '+':
-            computation = prev + current;
-            break;
-        case '-':
-            computation = prev - current;
-            break;
-        case '*':
-            computation = prev * current;
-            break;
-        case '/':
-            computation = prev / current;
-            break;
-        default:
-            return;
-    }
-    
-    calculator.currentInput = computation.toString();
-    calculator.operation = undefined;
-    calculator.previousInput = '';
-}
-
-function clear() {
-    calculator.currentInput = '0';
-    calculator.previousInput = '';
-    calculator.operation = undefined;
-}
-
-function deleteNumber() {
-    if (calculator.currentInput.length === 1 || 
-        (calculator.currentInput.length === 2 && calculator.currentInput.startsWith('-'))) {
-        calculator.currentInput = '0';
-    } else {
-        calculator.currentInput = calculator.currentInput.slice(0, -1);
-    }
-}
-
-function addDecimal() {
-    if (calculator.resetScreen) {
-        calculator.currentInput = '0';
-        calculator.resetScreen = false;
-    }
-    if (calculator.currentInput.includes('.')) return;
-    calculator.currentInput += '.';
-}
-
-document.querySelectorAll('button[value^="0"], button[value^="1"], button[value^="2"], button[value^="3"], button[value^="4"], button[value^="5"], button[value^="6"], button[value^="7"], button[value^="8"], button[value^="9"]').forEach(button => {
-    button.addEventListener('click', () => {
-        appendNumber(button.value);
-        updateDisplay();
+window.addEventListener('scroll', () => {
+    skillBars.forEach(bar => {
+        const barPosition = bar.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (barPosition < screenPosition) {
+            bar.style.width = bar.classList.contains('html') ? '95%' :
+                              bar.classList.contains('css') ? '90%' :
+                              bar.classList.contains('js') ? '85%' : '80%';
+        }
     });
 });
 
-document.querySelectorAll('.operator').forEach(button => {
-    button.addEventListener('click', () => {
-        chooseOperation(button.value);
-        updateDisplay();
-    });
-});
+// Form Submission
+const contactForm = document.querySelector('.contact-form');
 
-document.querySelector('.equal-sign').addEventListener('click', () => {
-    compute();
-    updateDisplay();
-});
-
-document.querySelector('button[value="AC"]').addEventListener('click', () => {
-    clear();
-    updateDisplay();
-});
-
-document.querySelector('button[value="backspace"]').addEventListener('click', () => {
-    deleteNumber();
-    updateDisplay();
-});
-
-document.querySelector('.decimal').addEventListener('click', () => {
-    addDecimal();
-    updateDisplay();
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Get form values
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData);
+    
+    // Here you would typically send the data to a server
+    console.log('Form submitted:', data);
+    
+    // Show success message
+    alert('Thank you for your message! I will get back to you soon.');
+    contactForm.reset();
 });
