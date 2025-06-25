@@ -1,11 +1,10 @@
 :root {
-  /* Color Palette */
+
   --calculator-bg: #2d3436;
   --display-bg: #1e272e;
   --display-text: #f5f6fa;
   --history-text: rgba(245, 246, 250, 0.7);
   
-  /* Button Colors */
   --num-btn: #3d3d3d;
   --num-btn-hover: #4b4b4b;
   --num-btn-active: #2e2e2e;
@@ -21,11 +20,10 @@
   --decimal-btn: #3d3d3d;
   --decimal-hover: #4b4b4b;
   
-  /* Borders */
+
   --main-border: 1px solid rgba(255, 255, 255, 0.1);
   --button-border: 1px solid rgba(0, 0, 0, 0.2);
   
-  /* Shadows */
   --main-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   --button-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --inset-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -85,9 +83,8 @@ body {
   gap: 12px;
 }
 
-/* Fixed button sizing */
 button {
-  height: 70px; /* Fixed height */
+  height: 70px; 
   border: none;
   border-radius: 12px;
   font-size: 1.5rem;
@@ -112,7 +109,6 @@ button:active {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Number buttons */
 button[value^="0"], 
 button[value^="1"], 
 button[value^="2"], 
@@ -126,7 +122,6 @@ button[value^="9"] {
   background: var(--num-btn);
 }
 
-/* Operator buttons */
 .operator {
   background: var(--operator-btn);
 }
@@ -135,7 +130,6 @@ button[value^="9"] {
   background: var(--operator-hover);
 }
 
-/* Function buttons */
 .function-key {
   background: var(--function-btn);
   font-size: 1.3rem;
@@ -145,7 +139,6 @@ button[value^="9"] {
   background: var(--function-hover);
 }
 
-/* Equal button */
 .equal-sign {
   background: var(--equal-btn);
   grid-column: span 1;
@@ -155,7 +148,6 @@ button[value^="9"] {
   background: var(--equal-hover);
 }
 
-/* Decimal button */
 .decimal {
   background: var(--decimal-btn);
 }
@@ -164,13 +156,11 @@ button[value^="9"] {
   background: var(--decimal-hover);
 }
 
-/* Zero button - spans 2 columns */
 button[value="0"] {
   grid-column: span 2;
-  width: auto; /* Allow to span 2 columns properly */
+  width: auto; 
 }
 
-/* Responsive adjustments */
 @media (max-width: 400px) {
   .calculator {
     width: 280px;
