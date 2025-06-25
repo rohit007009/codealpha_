@@ -1,0 +1,188 @@
+:root {
+  /* Color Palette */
+  --calculator-bg: #2d3436;
+  --display-bg: #1e272e;
+  --display-text: #f5f6fa;
+  --history-text: rgba(245, 246, 250, 0.7);
+  
+  /* Button Colors */
+  --num-btn: #3d3d3d;
+  --num-btn-hover: #4b4b4b;
+  --num-btn-active: #2e2e2e;
+  --operator-btn: #f39c12;
+  --operator-hover: #fdcb6e;
+  --operator-active: #e67e22;
+  --function-btn: #6c5ce7;
+  --function-hover: #a29bfe;
+  --function-active: #5649d6;
+  --equal-btn: #00b894;
+  --equal-hover: #55efc4;
+  --equal-active: #008c6d;
+  --decimal-btn: #3d3d3d;
+  --decimal-hover: #4b4b4b;
+  
+  /* Borders */
+  --main-border: 1px solid rgba(255, 255, 255, 0.1);
+  --button-border: 1px solid rgba(0, 0, 0, 0.2);
+  
+  /* Shadows */
+  --main-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  --button-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --inset-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.calculator {
+  width: 320px;
+  background: var(--calculator-bg);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: var(--main-shadow);
+  border: var(--main-border);
+}
+
+.calculator-display {
+  background: var(--display-bg);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  text-align: right;
+  box-shadow: var(--inset-shadow);
+}
+
+.previous-operation {
+  color: var(--history-text);
+  font-size: 1rem;
+  height: 1.2rem;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.current-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--display-text);
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: right;
+  outline: none;
+}
+
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Fixed button sizing */
+button {
+  height: 70px; /* Fixed height */
+  border: none;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--button-shadow);
+  border: var(--button-border);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Number buttons */
+button[value^="0"], 
+button[value^="1"], 
+button[value^="2"], 
+button[value^="3"], 
+button[value^="4"], 
+button[value^="5"], 
+button[value^="6"], 
+button[value^="7"], 
+button[value^="8"], 
+button[value^="9"] {
+  background: var(--num-btn);
+}
+
+/* Operator buttons */
+.operator {
+  background: var(--operator-btn);
+}
+
+.operator:hover {
+  background: var(--operator-hover);
+}
+
+/* Function buttons */
+.function-key {
+  background: var(--function-btn);
+  font-size: 1.3rem;
+}
+
+.function-key:hover {
+  background: var(--function-hover);
+}
+
+/* Equal button */
+.equal-sign {
+  background: var(--equal-btn);
+  grid-column: span 1;
+}
+
+.equal-sign:hover {
+  background: var(--equal-hover);
+}
+
+/* Decimal button */
+.decimal {
+  background: var(--decimal-btn);
+}
+
+.decimal:hover {
+  background: var(--decimal-hover);
+}
+
+/* Zero button - spans 2 columns */
+button[value="0"] {
+  grid-column: span 2;
+  width: auto; /* Allow to span 2 columns properly */
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+  .calculator {
+    width: 280px;
+    padding: 15px;
+  }
+  
+  button {
+    height: 60px;
+    font-size: 1.3rem;
+  }
+  
+  .current-input {
+    font-size: 2rem;
+  }
+}
