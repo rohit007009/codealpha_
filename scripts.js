@@ -1,4 +1,4 @@
-// Mobile Navigation
+
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const navLinkItems = document.querySelectorAll('.nav-link');
@@ -15,13 +15,11 @@ navLinkItems.forEach(item => {
     });
 });
 
-// Header Scroll Effect
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');
     header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -32,7 +30,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Animate Elements on Scroll
 const animateOnScroll = () => {
     const elements = document.querySelectorAll('.skill-card, .project-card, .contact-item');
     
@@ -47,9 +44,9 @@ const animateOnScroll = () => {
 };
 
 window.addEventListener('scroll', animateOnScroll);
-animateOnScroll(); // Run once on page load
+animateOnScroll(); 
 
-// Skill Bar Animation
+
 const skillBars = document.querySelectorAll('.skill-progress');
 
 window.addEventListener('scroll', () => {
@@ -65,20 +62,16 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Form Submission
+
 const contactForm = document.querySelector('.contact-form');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Get form values
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData);
-    
-    // Here you would typically send the data to a server
     console.log('Form submitted:', data);
     
-    // Show success message
     alert('Thank you for your message! I will get back to you soon.');
     contactForm.reset();
 });
