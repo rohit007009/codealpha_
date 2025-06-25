@@ -107,7 +107,6 @@ a {
     100% { opacity: 0.5; }
 }
 
-/* Header & Navigation */
 .header {
     position: fixed;
     top: 0;
@@ -184,7 +183,6 @@ a {
     transition: var(--transition);
 }
 
-/* Hero Section */
 .hero {
     height: 100vh;
     display: flex;
@@ -361,7 +359,6 @@ a {
     color: var(--text-color);
 }
 
-/* Skills Section */
 .skills {
     padding: 100px 20px;
     background-color: #f5f7fa;
@@ -443,7 +440,6 @@ a {
 .js { width: 85%; }
 .react { width: 80%; }
 
-/* Projects Section */
 .projects {
     padding: 100px 20px;
     background-color: var(--text-light);
@@ -551,7 +547,6 @@ a {
     color: var(--text-color);
 }
 
-/* Contact Section */
 .contact {
     padding: 100px 20px;
     background-color: #f5f7fa;
@@ -632,7 +627,6 @@ a {
     resize: vertical;
 }
 
-/* Footer */
 .footer {
     background-color: var(--dark-color);
     color: var(--text-light);
@@ -664,7 +658,6 @@ a {
     transform: translateY(-5px);
 }
 
-/* Animations */
 @keyframes fadeInLeft {
     from {
         opacity: 0;
@@ -698,7 +691,6 @@ a {
     }
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
     .hero-content {
         max-width: 500px;
